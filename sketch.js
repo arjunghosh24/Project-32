@@ -5,7 +5,7 @@ const Constraint = Matter.Constraint;
 
 var engine, world;
 var backgroundImg;
-var hour, hourText;
+var hour, timeText;
 
 var bg = "sunrise.png";
 
@@ -34,7 +34,7 @@ function draw()
     strokeWeight(4);
     textSize(20);
     fill("white");
-    text("Time: " + hourText, width - 1200, 20);
+    text("Time: " + timeText, width - 1200, 20);
 
 }
 
@@ -46,12 +46,11 @@ async function getTime(){
     console.log(responseJSON);
 
     var datetime = responseJSON.datetime;
-    var hour = datetime.slice(11,13);
+    var Time = datetime.slice(11,16);
 
-    console.log(hour);
+    console.log(Time);
 
-    
-    if(hour>=0 && hour<18 )
+    if(Time>=0 && Time<18 )
     {
         bg = "sunrise.png";
     }
@@ -60,5 +59,5 @@ async function getTime(){
         bg="sunset.png"
     }
     backgroundImg = loadImage(bg);
-    hourText = hour;
+    timeText = Time;
 }
